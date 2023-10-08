@@ -26,3 +26,4 @@ output "cloudwatch_log_group_name" {
 output "list_transactions_function_arn" {
   value = aws_lambda_function.ListTransactionsHandler.arn
 }
+
