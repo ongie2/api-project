@@ -47,13 +47,13 @@ data "archive_file" "lambda_zip_list" {
 
 resource "aws_lambda_function" "StoreTransactionHandler" {
   function_name = "StoreTransactionHandler"
-  filename      =  data.archive_file.lambda_zip_store.output_path
+  filename      = data.archive_file.lambda_zip_store.output_path
   handler       = "StoreTransactionHandler.lambda_handler"
   runtime       = "python3.8"
 
   environment {
     variables = {
-      REGION           = "us-east-1"
+      REGION            = "us-east-1"
       TRANSACTION_TABLE = aws_dynamodb_table.transaction_table.name
     }
   }
@@ -65,13 +65,13 @@ resource "aws_lambda_function" "StoreTransactionHandler" {
 
 resource "aws_lambda_function" "ListTransactionsHandler" {
   function_name = "ListTransactionsHandler"
-  filename      =  data.archive_file.lambda_zip_list.output_path
+  filename      = data.archive_file.lambda_zip_list.output_path
   handler       = "ListTransactionsHandler.lambda_handler"
   runtime       = "python3.8"
 
   environment {
     variables = {
-      REGION           = "us-east-1"
+      REGION            = "us-east-1"
       TRANSACTION_TABLE = aws_dynamodb_table.transaction_table.name
     }
   }

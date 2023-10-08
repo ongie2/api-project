@@ -72,7 +72,7 @@ resource "aws_lambda_permission" "apigw-ListTransactionsHandler" {
 }
 
 resource "aws_cloudwatch_log_group" "main_api_gw" {
-  name = "/aws/api-gw/${aws_api_gateway_rest_api.transaction_apigw.name}"
+  name              = "/aws/api-gw/${aws_api_gateway_rest_api.transaction_apigw.name}"
   retention_in_days = 14
 }
 
@@ -85,5 +85,5 @@ resource "aws_api_gateway_deployment" "transaction_apigw_deployment" {
     aws_api_gateway_integration.list_transactions-lambda,
   ]
   rest_api_id = aws_api_gateway_rest_api.transaction_apigw.id
-  stage_name  = "Dev" 
+  stage_name  = "Dev"
 }
