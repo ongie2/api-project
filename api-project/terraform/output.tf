@@ -1,29 +1,23 @@
-
-output "lambda_function_name" {
-  value = aws_lambda_function.StoreTransactionHandler.function_name
+output "delete_transaction_function_name" {
+  value = aws_lambda_function.DeleteTransactionHandler.function_name
 }
 
-output "lambda_function_arn" {
-  value = aws_lambda_function.StoreTransactionHandler.arn
+output "delete_transaction_function_arn" {
+  value = aws_lambda_function.DeleteTransactionHandler.arn
 }
 
-output "lambda_invoke_arn" {
-  value = aws_lambda_function.StoreTransactionHandler.invoke_arn
+output "delete_transaction_invoke_arn" {
+  value = aws_lambda_function.DeleteTransactionHandler.invoke_arn
 }
 
-output "api_gateway_id" {
-  value = aws_api_gateway_rest_api.transaction_apigw.id
+output "update_transaction_function_name" {
+  value = aws_lambda_function.UpdateTransactionHandler.function_name
 }
 
-output "api_gateway_url" {
-  value = aws_api_gateway_deployment.transaction_apigw_deployment.invoke_url
+output "update_transaction_function_arn" {
+  value = aws_lambda_function.UpdateTransactionHandler.arn
 }
 
-output "cloudwatch_log_group_name" {
-  value = aws_cloudwatch_log_group.main_api_gw.name
+output "update_transaction_invoke_arn" {
+  value = aws_lambda_function.UpdateTransactionHandler.invoke_arn
 }
-
-output "list_transactions_function_arn" {
-  value = aws_lambda_function.ListTransactionsHandler.arn
-}
-
