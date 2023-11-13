@@ -123,22 +123,22 @@ resource "aws_lambda_function" "UpdateTransactionHandler" {
 }
 
 resource "aws_cloudwatch_log_group" "lambda_log_group_store" {
-  name = "/aws/lambda/${aws_lambda_function.StoreTransactionHandler.function_name}"
+  name              = "/aws/lambda/${aws_lambda_function.StoreTransactionHandler.function_name}"
   retention_in_days = 14
 }
 
 resource "aws_cloudwatch_log_group" "lambda_log_group_list" {
-  name = "/aws/lambda/${aws_lambda_function.ListTransactionsHandler.function_name}"
+  name              = "/aws/lambda/${aws_lambda_function.ListTransactionsHandler.function_name}"
   retention_in_days = 14
 }
 
 resource "aws_cloudwatch_log_group" "lambda_log_group_delete" {
-  name = "/aws/lambda/${aws_lambda_function.DeleteTransactionHandler.function_name}"
+  name              = "/aws/lambda/${aws_lambda_function.DeleteTransactionHandler.function_name}"
   retention_in_days = 14
 }
 
 resource "aws_cloudwatch_log_group" "lambda_log_group_update" {
-  name = "/aws/lambda/${aws_lambda_function.UpdateTransactionHandler.function_name}"
+  name              = "/aws/lambda/${aws_lambda_function.UpdateTransactionHandler.function_name}"
   retention_in_days = 14
 }
 

@@ -46,44 +46,44 @@ resource "aws_api_gateway_method" "deletetransaction" {
 resource "aws_api_gateway_method" "updatetransaction" {
   rest_api_id   = aws_api_gateway_rest_api.transaction_apigw.id
   resource_id   = aws_api_gateway_resource.transaction.id
-  http_method   = "PUT"  # or "PATCH" depending on your API design
+  http_method   = "PUT" # or "PATCH" depending on your API design
   authorization = "NONE"
 }
 
 resource "aws_api_gateway_integration" "storetransaction-lambda" {
-  rest_api_id = aws_api_gateway_rest_api.transaction_apigw.id
-  resource_id = aws_api_gateway_resource.transaction.id
-  http_method = aws_api_gateway_method.storetransaction.http_method
+  rest_api_id             = aws_api_gateway_rest_api.transaction_apigw.id
+  resource_id             = aws_api_gateway_resource.transaction.id
+  http_method             = aws_api_gateway_method.storetransaction.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri = aws_lambda_function.StoreTransactionHandler.invoke_arn
+  uri                     = aws_lambda_function.StoreTransactionHandler.invoke_arn
 }
 
 resource "aws_api_gateway_integration" "list_transactions-lambda" {
-  rest_api_id = aws_api_gateway_rest_api.transaction_apigw.id
-  resource_id = aws_api_gateway_resource.list_transactions.id
-  http_method = aws_api_gateway_method.list_transactions.http_method
+  rest_api_id             = aws_api_gateway_rest_api.transaction_apigw.id
+  resource_id             = aws_api_gateway_resource.list_transactions.id
+  http_method             = aws_api_gateway_method.list_transactions.http_method
   integration_http_method = "GET"
   type                    = "AWS_PROXY"
-  uri = aws_lambda_function.ListTransactionsHandler.invoke_arn
+  uri                     = aws_lambda_function.ListTransactionsHandler.invoke_arn
 }
 
 resource "aws_api_gateway_integration" "deletetransaction-lambda" {
-  rest_api_id = aws_api_gateway_rest_api.transaction_apigw.id
-  resource_id = aws_api_gateway_resource.transaction.id
-  http_method = aws_api_gateway_method.deletetransaction.http_method
-  integration_http_method = "POST"  # Lambda uses POST for all invocations
+  rest_api_id             = aws_api_gateway_rest_api.transaction_apigw.id
+  resource_id             = aws_api_gateway_resource.transaction.id
+  http_method             = aws_api_gateway_method.deletetransaction.http_method
+  integration_http_method = "POST" # Lambda uses POST for all invocations
   type                    = "AWS_PROXY"
-  uri = aws_lambda_function.DeleteTransactionHandler.invoke_arn
+  uri                     = aws_lambda_function.DeleteTransactionHandler.invoke_arn
 }
 
 resource "aws_api_gateway_integration" "updatetransaction-lambda" {
-  rest_api_id = aws_api_gateway_rest_api.transaction_apigw.id
-  resource_id = aws_api_gateway_resource.transaction.id
-  http_method = aws_api_gateway_method.updatetransaction.http_method
-  integration_http_method = "POST"  # Lambda uses POST for all invocations
+  rest_api_id             = aws_api_gateway_rest_api.transaction_apigw.id
+  resource_id             = aws_api_gateway_resource.transaction.id
+  http_method             = aws_api_gateway_method.updatetransaction.http_method
+  integration_http_method = "POST" # Lambda uses POST for all invocations
   type                    = "AWS_PROXY"
-  uri = aws_lambda_function.UpdateTransactionHandler.invoke_arn
+  uri                     = aws_lambda_function.UpdateTransactionHandler.invoke_arn
 }
 
 resource "aws_lambda_permission" "apigw-StoreTransactionHandler" {
@@ -111,7 +111,7 @@ resource "aws_lambda_permission" "apigw-UpdateTransactionHandler" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.UpdateTransactionHandler.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.transaction_apigw.execution_arn}/*/PUT/transaction"  # or PATCH
+  source_arn    = "${aws_api_gateway_rest_api.transaction_apigw.execution_arn}/*/PUT/transaction" # or PATCH
 }
 
 resource "aws_cloudwatch_log_group" "main_api_gw" {
